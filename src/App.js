@@ -1,21 +1,39 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React from 'react';
+import {apiUrls} from './config';
 import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
-}
+const App = React.createClass({
+  componentDidMount(){
+    const getUserMedia = (() => {
+      const fn = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia
+      return fn ? fn.bind(navigator) : null
+    })()
+    const video = this.vid;
+    if(getUserMedia){
+      getUserMedia({ video: true }, function(stream){
+        const mediaStream = stream;
+        if (typeof (video.srcObject) !== 'undefined') {
+            video.srcObject = mediaStream;
+        }
+        else {
+            video.src = URL.createObjectURL(mediaStream);
+        }
+      }, function(){
+        console.log('error')
+      });
+    }else{
+      alert('NO USERMEDIA SUPPORT');
+    }
 
+  },
+   render() {
+     return (
+       <div className="App">
+         <div className="App-header">
+           <video ref={(vid)=>this.vid = vid} src="" autoPlay id="videoStream"></video>
+         </div>
+       </div>
+     );
+   }
+});
 export default App;
