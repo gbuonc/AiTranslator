@@ -35,5 +35,4 @@ export default function(video){
   }else{
     alert('Sorry, your browser cannot access device camera.');
   }
-
 }
