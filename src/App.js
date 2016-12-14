@@ -21,7 +21,7 @@ const App = React.createClass({
       window.speechSynthesis.onvoiceschanged = function () {
          this.voices = window.speechSynthesis.getVoices();
          if(this.voices.length > 0){
-            this.setState({voice : this.voices.filter(function(voice) { return voice.name === 'Google UK English Female'; })[0]});
+            this.setState({voice : this.voices.filter(function(voice) { return voice.lang === 'en_GB' || voice.lang === 'en-GB'; })[0]});
          }
       }.bind(this);
    },

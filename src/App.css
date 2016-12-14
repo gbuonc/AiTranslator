@@ -36,7 +36,7 @@ canvas{
    position: absolute;
    left:0;
    bottom:0;
-   height:16%;
+   height:92px;
    width: 100%;
    background: #DE3E35;
 }
@@ -46,8 +46,8 @@ canvas{
   left:50%;
   transform: translate(-50%, -50%);
   z-index: 2;
-  width: 20vw;
-  height: 20vw;
+  width: 85px;
+  height: 85px;
   border-radius: 50%;
   background: #fff;
   cursor: pointer;
@@ -82,7 +82,7 @@ canvas{
 }
 .spinner-wrapper{
    display: block;
-   bottom: 70px;
+   bottom: 55px;
    position: absolute;
    z-index: 2;
 }
