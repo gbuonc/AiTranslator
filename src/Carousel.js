@@ -16,8 +16,8 @@ const Carousel = React.createClass({
       infinite: true,
       arrows: false,
       centerMode: true,
+      centerPadding: '15px',
       speed: 500,
-      slidesToShow: 1,
       slidesToScroll: 1,
       afterChange: function(i){
          self.setState({wordToSpeech: self.props.items[i]})
@@ -25,13 +25,16 @@ const Carousel = React.createClass({
     };
     return (
       <div className="slider-wrapper">
+         {'speechSynthesis' in window && this.props.voice && <SpeechBtn speak={this.state.wordToSpeech} voice={this.props.voice} /> }
          <Slider {...settings}>
             {this.props.items.map((item, index)=>{
-               return <div key={index}>{item} <em>{this.props.translation[index]}</em>
-               </div>
+               return (
+                  <div key={index}>
+                     <div className="slider-content">{item} <em>{this.props.translation[index]}</em></div>
+                  </div>
+               )
             })}
          </Slider>
-         {'speechSynthesis' in window && this.props.voice && <SpeechBtn speak={this.state.wordToSpeech} voice={this.props.voice} /> }
       </div>
     );
   }

@@ -6,8 +6,8 @@ html, body{margin: 0; padding: 0; height:100%; background: #efefef}
   height: 100%;
   position: relative;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 .videoWrap{
   position: absolute;
@@ -30,7 +30,6 @@ canvas{
   top:0;
   right: 0;
 }
-
 
 .snap-btn-wrapper{
    position: absolute;
@@ -61,16 +60,19 @@ canvas{
    height: 35px;
 }
 .slider-wrapper{
+   position: absolute;
+   left:0;
+   bottom:140px;
+   padding-bottom: 30px;
+   width: 100%;
    font-family: sans-serif;
-   min-height: 150px;
    overflow: hidden;
    color:#F7C223;
-   font-size: 2em;
+   font-size: 1.9em;
    text-align: center;
-   top:15%;
 }
 .slick-list{text-align: center;}
-.slick-slide em{display: block; font-size:0.6em; font-family: georgia, serif; color: #fff}
+.slick-slide em{display: block; font-size:0.7em; font-family: georgia, serif; color: #fff}
 .slick-dots li {margin:0}
 .slick-dots li button:before{color: #fff;}
 .slick-dots li.slick-active button:before {color: #fff;}
@@ -78,7 +80,6 @@ canvas{
 .speechBtn{
    width: 30px;
    height: 30px;
-   top:30px;
 }
 .spinner-wrapper{
    display: block;
