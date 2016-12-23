@@ -1,4 +1,4 @@
-const key = 'AIzaSyCpDWzG8VmqTP_13Wj7IsIRr9UfhlU3zVA'
+const key = 'YOUR KEY HERE'
 
 export const apiUrls = {
   cloudVision: 'https://vision.googleapis.com/v1/images:annotate?key=' + key,
