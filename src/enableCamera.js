@@ -3,35 +3,18 @@ export default function(video){
     const fn = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia
     return fn ? fn.bind(navigator) : null
   })()
-  const initCameraRequest = (video, sources) => {
-    const rearFacingCamera = sources.filter(source => source.facing === 'environment')[0];
-      getUserMedia(
-        {
-          audio :false,
-          video: rearFacingCamera ? {optional:[{sourceId: rearFacingCamera.id}] } : true
-        },
-        function(stream){
-        const mediaStream = stream;
-        if (typeof (video.srcObject) !== 'undefined') {
-            video.srcObject = mediaStream;
-        }
-        else {
-            video.src = URL.createObjectURL(mediaStream);
-        }
-      }, function(){
-        console.log('error')
-      });
+  const initCameraRequest = () => {
+    navigator.mediaDevices.getUserMedia({audio:false, video: { facingMode: { exact: "environment" } }})
+    .then(function(stream){
+      var video = document.querySelector('video');
+      video.srcObject = stream;
+      video.onloadedmetadata = function(e) {
+        video.play();
+      };
+    })
   }
   if(getUserMedia){
-    // const video = this.vid;
-    const sourceSupport = MediaStreamTrack && MediaStreamTrack.getSources;
-    if (sourceSupport) {
-      MediaStreamTrack.getSources(function(sources){
-        initCameraRequest(video, sources)
-      })
-    } else {
-      initCameraRequest(video)
-    }
+    initCameraRequest();
   }else{
     alert('Sorry, your browser cannot access device camera.');
   }
